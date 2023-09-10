@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2048</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/styles.css">
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="game__header">
+          <h1 class="game__heading">2048</h1>
+          <ul class="game__control">
+            <li><button type="button" class="game__button">i</button></li>
+            <li><button type="button" class="game__button">&#8635;</button></li>
+          </ul>
+          <div class="game__score">
+            <span>Score</span>
+            <span>0</span>
+          </div>
+        </div>
+    </header>
+    <main>
+      <section class="game">
+        <div class="container">
+          <div class="game__field">
+            <div class="game__row">
+              <div class="game__cell"></div>
+              <div class="game__cell"></div>
+              <div class="game__cell"></div>
+              <div class="game__cell"></div>
+            </div>
+            <div class="game__row">
+              <div class="game__cell"></div>
+              <div class="game__cell"></div>
+              <div class="game__cell"></div>
+              <div class="game__cell"></div>
+            </div>
+            <div class="game__row">
+              <div class="game__cell"></div>
+              <div class="game__cell"></div>
+              <div class="game__cell"></div>
+              <div class="game__cell"></div>
+            </div>
+            <div class="game__row">
+              <div class="game__cell"></div>
+              <div class="game__cell"></div>
+              <div class="game__cell"></div>
+              <div class="game__cell"></div>
+            </div>
+          </div>
+        </div>
+        <div class="overlay overlay_hidden">
+          <div class="modal">
+            <h2 class="modal__heading">How to play:</h2>
+            <ul class="modal__list">
+              <li class="modal__item">Use your arrow-keys to slide the tiles.</li>
+              <li class="modal__item">
+                Two tiles with the same value in line can be merged. The goal is to merge the tiles and get the 2048
+                tile.
+              </li>
+              <li class="modal__item">The score is a sum of the merged tiles.</li>
+            </ul>
+            <button type="button" class="modal__button">Got it!</button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="container">
+        <ul class="footer__list">
+          <li class="footer__item">
+            <a class="footer__link" href="https://github.com/anenkosofi">
+              <svg width="48" height="48">
+                <use href="./assets/sprite.svg#icon-github"></use>
+              </svg>
+            </a>
+          </li>
+          <li class="footer__item">
+            <a class="footer__link" href="https://rs.school/js/">
+              <svg width="120" height="40">
+                <use href="./assets/sprite.svg#icon-rs_school_js"></use>
+              </svg>
+            </a>
+          </li>
+        </ul>
+        <p class="footer__rights">&#169; 2023 Anenko. All rights reserved</p>
+      </div>
+    </footer>
+  </body>
+</html>
