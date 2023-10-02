@@ -17,11 +17,11 @@
           <h1 class="game__heading">2048</h1>
           <ul class="game__control">
             <li><button type="button" class="game__button game__button_i">i</button></li>
-            <li><button type="button" class="game__button">&#8635;</button></li>
+            <li><button type="button" class="game__button game__button_start">&#8635;</button></li>
           </ul>
           <div class="game__score">
             <span>Score</span>
-            <span>0</span>
+            <span id="score">0</span>
           </div>
         </div>
     </header>
@@ -29,31 +29,8 @@
       <section class="game">
         <div class="container">
           <div class="game__field">
-            <div class="game__row">
-              <div class="game__cell"></div>
-              <div class="game__cell"></div>
-              <div class="game__cell"></div>
-              <div class="game__cell"></div>
-            </div>
-            <div class="game__row">
-              <div class="game__cell"></div>
-              <div class="game__cell"></div>
-              <div class="game__cell"></div>
-              <div class="game__cell"></div>
-            </div>
-            <div class="game__row">
-              <div class="game__cell"></div>
-              <div class="game__cell"></div>
-              <div class="game__cell"></div>
-              <div class="game__cell"></div>
-            </div>
-            <div class="game__row">
-              <div class="game__cell"></div>
-              <div class="game__cell"></div>
-              <div class="game__cell"></div>
-              <div class="game__cell"></div>
-            </div>
           </div>
+        </div>
         </div>
         <div class="overlay overlay_hidden">
           <div class="modal">
@@ -93,5 +70,6 @@
       </div>
     </footer>
     <script src="./js/open-i.js"></script>
+    <script src="./js/play-game.js"></script>
   </body>
 </html>
