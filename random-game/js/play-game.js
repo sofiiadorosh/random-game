@@ -1,5 +1,10 @@
 let grid = document.querySelector(".game__field");
-const start = document.querySelector(".game__button_start");
+const tryAgain = document.querySelector(".over__button_try");
+const playAgain = document.querySelector(".win__button_play");
+const over = document.querySelector(".over__overlay");
+const win = document.querySelector(".win__overlay");
+const overScore = document.querySelector(".over__score");
+const winScore = document.querySelector(".win__score");
 const container = document.querySelector(".container");
 const result = document.getElementById("result");
 
@@ -73,8 +78,36 @@ const hasEmptyBox = () => {
   return false;
 };
 
+const saveResultsToLocalStorage = () => {
+  const results = JSON.parse(localStorage.getItem("results"));
+  if (!results) {
+    localStorage.setItem("results", JSON.stringify([score]));
+  } else {
+    if (results.length === 10) {
+      results.shift();
+      results.push(score);
+      localStorage.setItem("results", JSON.stringify(results));
+    } else {
+      results.push(score);
+      localStorage.setItem("results", JSON.stringify(results));
+    }
+  }
+};
+
 const gameOverCheck = () => {
   if (!possibleMovesCheck()) {
+    over.classList.remove("over__overlay_hidden");
+    overScore.innerText = score;
+    saveResultsToLocalStorage();
+  }
+};
+
+const gameWinCheck = () => {
+  const didWin = matrix.some((row) => row.find((cell) => cell === 16));
+  if (didWin) {
+    win.classList.remove("win__overlay_hidden");
+    winScore.innerText = score;
+    saveResultsToLocalStorage();
   }
 };
 
@@ -153,6 +186,7 @@ const slideDown = () => {
       element.classList.add("game__cell", `box-${matrix[j][i]}`);
     }
   }
+  gameWinCheck();
   let decision = Math.random() > 0.5 ? 1 : 0;
   if (decision) {
     setTimeout(generateFour, 200);
@@ -160,6 +194,7 @@ const slideDown = () => {
     setTimeout(generateTwo, 200);
   }
 };
+
 const slideUp = () => {
   for (let i = 0; i < columns; i++) {
     let num = [];
@@ -175,6 +210,7 @@ const slideUp = () => {
       element.classList.add("game__cell", `box-${matrix[j][i]}`);
     }
   }
+  gameWinCheck();
   let decision = Math.random() > 0.5 ? 1 : 0;
   if (decision) {
     setTimeout(generateFour, 200);
@@ -198,6 +234,7 @@ const slideRight = () => {
       element.classList.add("game__cell", `box-${matrix[i][j]}`);
     }
   }
+  gameWinCheck();
   let decision = Math.random() > 0.5 ? 1 : 0;
   if (decision) {
     setTimeout(generateFour, 200);
@@ -221,6 +258,7 @@ const slideLeft = () => {
       element.classList.add("game__cell", `box-${matrix[i][j]}`);
     }
   }
+  gameWinCheck();
   let decision = Math.random() > 0.5 ? 1 : 0;
   if (decision) {
     setTimeout(generateFour, 200);
@@ -291,7 +329,15 @@ const startGame = () => {
 
 startGame();
 
-start.addEventListener("click", () => {
+tryAgain.addEventListener("click", () => {
   startGame();
   swipeDirection = "";
+  over.classList.add("over__overlay_hidden");
+  win.classList.add("win__overlay_hidden");
+});
+
+playAgain.addEventListener("click", () => {
+  startGame();
+  swipeDirection = "";
+  win.classList.add("win__overlay_hidden");
 });
