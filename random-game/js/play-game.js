@@ -38,29 +38,34 @@ const createGrid = () => {
   }
 };
 
-const adjacentCheck = (arr) => {
-  for (let i = 0; i < arr.length - 1; i++) {
-    if (arr[i] == arr[i + 1]) {
-      return true;
-    }
-  }
-  return false;
-};
-
 const possibleMovesCheck = () => {
-  for (let i in matrix) {
-    if (adjacentCheck(matrix[i])) {
-      return true;
-    }
-    let colarr = [];
+  for (let i = 0; i < rows; i++) {
     for (let j = 0; j < columns; j++) {
-      colarr.push(matrix[i][j]);
-    }
-    if (adjacentCheck(colarr)) {
-      return true;
+      // Check if the current cell is empty (0).
+      if (matrix[i][j] === 0) {
+        return true; // If there's an empty cell, there's a possible move.
+      }
+      // Check horizontally (left and right) for adjacent cells with the same value.
+      if (
+        j < columns - 1 &&
+        (matrix[i][j] === matrix[i][j + 1] ||
+          matrix[i][j] === 0 ||
+          matrix[i][j + 1] === 0)
+      ) {
+        return true; // Possible move in horizontal direction.
+      }
+      // Check vertically (up and down) for adjacent cells with the same value.
+      if (
+        i < rows - 1 &&
+        (matrix[i][j] === matrix[i + 1][j] ||
+          matrix[i][j] === 0 ||
+          matrix[i + 1][j] === 0)
+      ) {
+        return true; // Possible move in vertical direction.
+      }
     }
   }
-  return false;
+  return false; // If no possible moves are found, return false.
 };
 
 const randomPosition = (arr) => {
@@ -103,7 +108,7 @@ const gameOverCheck = () => {
 };
 
 const gameWinCheck = () => {
-  const didWin = matrix.some((row) => row.find((cell) => cell === 16));
+  const didWin = matrix.some((row) => row.find((cell) => cell === 64));
   if (didWin) {
     win.classList.remove("win__overlay_hidden");
     winScore.innerText = score;
@@ -187,6 +192,7 @@ const slideDown = () => {
     }
   }
   gameWinCheck();
+  gameOverCheck();
   let decision = Math.random() > 0.5 ? 1 : 0;
   if (decision) {
     setTimeout(generateFour, 200);
@@ -211,6 +217,7 @@ const slideUp = () => {
     }
   }
   gameWinCheck();
+  gameOverCheck();
   let decision = Math.random() > 0.5 ? 1 : 0;
   if (decision) {
     setTimeout(generateFour, 200);
@@ -235,6 +242,7 @@ const slideRight = () => {
     }
   }
   gameWinCheck();
+  gameOverCheck();
   let decision = Math.random() > 0.5 ? 1 : 0;
   if (decision) {
     setTimeout(generateFour, 200);
@@ -259,6 +267,7 @@ const slideLeft = () => {
     }
   }
   gameWinCheck();
+  gameOverCheck();
   let decision = Math.random() > 0.5 ? 1 : 0;
   if (decision) {
     setTimeout(generateFour, 200);
